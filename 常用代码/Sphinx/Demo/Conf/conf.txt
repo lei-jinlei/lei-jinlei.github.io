@@ -1,0 +1,10 @@
+// 创建索引，product是索引名称
+E:\sphinx\bin\indexer.exe -c E:\sphinx\sphinx.conf test1
+
+// C:\coreseek\bin 执行 mmseg -u unigram.txt 该命令执行后，将会在unigram.txt所在目录中产生一个名为unigram.txt.uni的文件 ，将该文件改名为uni.lib，完成词典的构造。
+E:\sphinx\bin\mmseg -u E:\sphinx\etc\unigram.txt E:\sphinx\etc\uni.lib
+
+searchd.exe  --install -c E:\sphinx\sphinx.conf   //创建服务
+searchd.exe  --delete						//删除服务
+
+

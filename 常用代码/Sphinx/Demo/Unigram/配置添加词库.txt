@@ -1,0 +1,24 @@
+词库转化：
+	1. 把words.txt,转换工具words_format.php及c:\coreseek\etc\unigram.txt三个文件放到能运行php的 服务器同一个目录下.
+
+　　2. 然后访问words_format.php .
+
+　　3. 等待程序运行完，时间长短要看你词的多少，太多的话中间可能假死。运行完后会在相同目录下生产 words_new.txt把这个文件加到原unigram.txt的后面，保存备用.
+
+　　4. 把上面得到的文件unigram.txt复制到C:\coreseek\bin然后在命令行下进入目录C:\coreseek\bin 执行 mmseg -u unigram.txt 该命令执行后，将会在unigram.txt所在目录中产生一个名为unigram.txt.uni的文件 ，将该文件改名为uni.lib，完成词典的构造。
+
+　　5. 测试新词库能否正解分词。在C:\coreseek\bin下新建文本文件test.txt。输入要测试的关键词。 例如:四季服装网中大面料辅料，然后保存。当中一定要包含你新加进词库的某个关键词。例如四季服装网是我新加的 关键词。然后在刚才的命令行下执行mmseg -d C:\coreseek\bin test.txt>result.txt .执行完后打开新生产 的结果文件result.txt .如果看到分词结果类似四季服装网/x 中大/x 面料/x 辅料/x 的话证明词库已正确生成， 如果看到新关键词被分切开如: 四/x 季/x 服/x 装/x网/x 中大/x 面料/x 辅料/x的话就说明新的词库并不正确。 要检查一下哪里出错了，重新生产。
+
+　　6. 再把得到的uni.lib复制到C:\coreseek\etc覆盖原文件就大功告成了
+
+服务器：
+	重新建立索引库、重启searchd
+		 /usr/local/coreseek/bin/indexer -c /usr/local/coreseek/etc/sphinx.conf –all –pidfile –rotate
+		关闭searchd
+		  ps auxww | grep searchd
+		  kill 923230
+		启动searchd
+		/usr/local/coreseek/bin/searchd -c /usr/local/coreseek/etc/sphinx.conf –console –pidfile
+
+		搜索试下就出来了。
+	注意：需要重启searchd
