@@ -1,7 +1,7 @@
-æ‰§è¡Œæ–¹æ³•:
-é¦–å…ˆå…ˆä¿®æ”¹server.phpä¸index.htmlçš„ip
-é€šè¿‡å‘½ä»¤è¡Œæ‰§è¡Œ [phpè·¯å¾„]\php.exe "[æ–‡ä»¶è·¯å¾„]\server.php"
-ç„¶åé€šè¿‡æµè§ˆå™¨æ‰“å¼€index.html
+Ö´ĞĞ·½·¨:
+Ê×ÏÈÏÈĞŞ¸Äserver.phpÓëindex.htmlµÄip
+Í¨¹ıÃüÁîĞĞÖ´ĞĞ [phpÂ·¾¶]\php.exe "[ÎÄ¼şÂ·¾¶]\server.php"
+È»ºóÍ¨¹ıä¯ÀÀÆ÷´ò¿ªindex.html
 
 
 
@@ -15,7 +15,7 @@ include 'websocket.class.php';
 $config=array(  
   'address'=>'192.168.0.200',  
   'port'=>'8000',  
-  'event'=>'WSevent',//å›è°ƒå‡½æ•°çš„å‡½æ•°å  
+  'event'=>'WSevent',//»Øµ÷º¯ÊıµÄº¯ÊıÃû  
   'log'=>true,  
 );  
 $websocket = new websocket($config);  
@@ -23,11 +23,11 @@ $websocket->run();
 function WSevent($type,$event){  
   global $websocket;  
     if('in'==$type){  
-      $websocket->log('å®¢æˆ·è¿›å…¥id:'.$event['k']);  
+      $websocket->log('¿Í»§½øÈëid:'.$event['k']);  
     }elseif('out'==$type){  
-      $websocket->log('å®¢æˆ·é€€å‡ºid:'.$event['k']);  
+      $websocket->log('¿Í»§ÍË³öid:'.$event['k']);  
     }elseif('msg'==$type){  
-      $websocket->log($event['k'].'æ¶ˆæ¯:'.$event['msg']);  
+      $websocket->log($event['k'].'ÏûÏ¢:'.$event['msg']);  
       roboot($event['sign'],$event['msg']);  
     }  
 }  
@@ -43,20 +43,20 @@ function roboot($sign,$t){
     $show='Robot';  
     break;  
   case 'time':  
-    $show='å½“å‰æ—¶é—´:'.date('Y-m-d H:i:s');  
+    $show='µ±Ç°Ê±¼ä:'.date('Y-m-d H:i:s');  
     break;  
-  case 'å†è§':  
-    $show='( ^_^ )/~~æ‹œæ‹œ';  
+  case 'ÔÙ¼û':  
+    $show='( ^_^ )/~~°İ°İ';  
     $websocket->write($sign,'Robot:'.$show);  
     $websocket->close($sign);  
     return;  
     break;  
-  case 'å¤©ç‹ç›–åœ°è™':  
-    $array = array('å°é¸¡ç‚–è˜‘è‡','å®å¡”éœ‡æ²³å¦–','ç²’ç²’çš†è¾›è‹¦');  
+  case 'ÌìÍõ¸ÇµØ»¢':  
+    $array = array('Ğ¡¼¦ìÀÄ¢¹½','±¦ËşÕğºÓÑı','Á£Á£½ÔĞÁ¿à');  
     $show = $array[rand(0,2)];  
     break;  
   default:  
-    $show='( âŠ™oâŠ™?)ä¸æ‡‚,ä½ å¯ä»¥å°è¯•è¯´:hello,name,time,å†è§,å¤©ç‹ç›–åœ°è™.';  
+    $show='( ¡Ño¡Ñ?)²»¶®,Äã¿ÉÒÔ³¢ÊÔËµ:hello,name,time,ÔÙ¼û,ÌìÍõ¸ÇµØ»¢.';  
   }  
   $websocket->write($sign,'Robot:'.$show);  
 }  
@@ -79,18 +79,18 @@ index.html
 <textarea class="log" style="width: 100%; height: 500px;">  
 =======websocket======  
 </textarea>  
-<input type="button" value="è¿æ¥" onClick="link()">   
-<input type="button" value="æ–­å¼€" onClick="dis()">  
+<input type="button" value="Á¬½Ó" onClick="link()">   
+<input type="button" value="¶Ï¿ª" onClick="dis()">  
 <input type="text" id="text">  
-<input type="button" value="å‘é€" onClick="send()">  
+<input type="button" value="·¢ËÍ" onClick="send()">  
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>  
 <script>  
 function link(){  
   var url='ws://192.168.0.200:8000';  
   socket=new WebSocket(url);  
-  socket.onopen=function(){log('è¿æ¥æˆåŠŸ')}  
-  socket.onmessage=function(msg){log('è·å¾—æ¶ˆæ¯:'+msg.data);console.log(msg);}  
-  socket.onclose=function(){log('æ–­å¼€è¿æ¥')}  
+  socket.onopen=function(){log('Á¬½Ó³É¹¦')}  
+  socket.onmessage=function(msg){log('»ñµÃÏûÏ¢:'+msg.data);console.log(msg);}  
+  socket.onclose=function(){log('¶Ï¿ªÁ¬½Ó')}  
 }  
 function dis(){  
   socket.close();  
@@ -117,42 +117,42 @@ websocket.class.php
 [php] view plain copy
 <?php  
 /* 
-åˆ›å»ºç±»websocket($config); 
-$configç»“æ„: 
+´´½¨Ààwebsocket($config); 
+$config½á¹¹: 
 $config=array( 
-  'address'=>'192.168.0.200',//ç»‘å®šåœ°å€ 
-  'port'=>'8000',//ç»‘å®šç«¯å£ 
-  'event'=>'WSevent',//å›è°ƒå‡½æ•°çš„å‡½æ•°å 
-  'log'=>true,//å‘½ä»¤è¡Œæ˜¾ç¤ºè®°å½• 
+  'address'=>'192.168.0.200',//°ó¶¨µØÖ· 
+  'port'=>'8000',//°ó¶¨¶Ë¿Ú 
+  'event'=>'WSevent',//»Øµ÷º¯ÊıµÄº¯ÊıÃû 
+  'log'=>true,//ÃüÁîĞĞÏÔÊ¾¼ÇÂ¼ 
 ); 
   
-å›è°ƒå‡½æ•°è¿”å›æ•°æ®æ ¼å¼ 
+»Øµ÷º¯Êı·µ»ØÊı¾İ¸ñÊ½ 
 function WSevent($type,$event) 
   
-$typeå­—ç¬¦ä¸² äº‹ä»¶ç±»å‹æœ‰ä»¥ä¸‹ä¸‰ç§ 
-in  å®¢æˆ·ç«¯è¿›å…¥ 
-out å®¢æˆ·ç«¯æ–­å¼€ 
-msg å®¢æˆ·ç«¯æ¶ˆæ¯åˆ°è¾¾ 
-å‡ä¸ºå°å†™ 
+$type×Ö·û´® ÊÂ¼şÀàĞÍÓĞÒÔÏÂÈıÖÖ 
+in  ¿Í»§¶Ë½øÈë 
+out ¿Í»§¶Ë¶Ï¿ª 
+msg ¿Í»§¶ËÏûÏ¢µ½´ï 
+¾ùÎªĞ¡Ğ´ 
   
-$event æ•°ç»„ 
-$event['k']å†…ç½®ç”¨æˆ·åˆ—è¡¨çš„userid; 
-$event['sign']å®¢æˆ·æ ‡ç¤º 
-$event['msg']æ”¶åˆ°çš„æ¶ˆæ¯ $type='msg'æ—¶æ‰æœ‰è¯¥ä¿¡æ¯ 
+$event Êı×é 
+$event['k']ÄÚÖÃÓÃ»§ÁĞ±íµÄuserid; 
+$event['sign']¿Í»§±êÊ¾ 
+$event['msg']ÊÕµ½µÄÏûÏ¢ $type='msg'Ê±²ÅÓĞ¸ÃĞÅÏ¢ 
   
-æ–¹æ³•: 
-run()è¿è¡Œ 
-search(æ ‡ç¤º)éå†å–å¾—è¯¥æ ‡ç¤ºçš„id 
-close(æ ‡ç¤º)æ–­å¼€è¿æ¥ 
-write(æ ‡ç¤º,ä¿¡æ¯)æ¨é€ä¿¡æ¯ 
-idwrite(id,ä¿¡æ¯)æ¨é€ä¿¡æ¯ 
+·½·¨: 
+run()ÔËĞĞ 
+search(±êÊ¾)±éÀúÈ¡µÃ¸Ã±êÊ¾µÄid 
+close(±êÊ¾)¶Ï¿ªÁ¬½Ó 
+write(±êÊ¾,ĞÅÏ¢)ÍÆËÍĞÅÏ¢ 
+idwrite(id,ĞÅÏ¢)ÍÆËÍĞÅÏ¢ 
   
-å±æ€§: 
-$users å®¢æˆ·åˆ—è¡¨ 
-ç»“æ„: 
+ÊôĞÔ: 
+$users ¿Í»§ÁĞ±í 
+½á¹¹: 
 $users=array( 
-[ç”¨æˆ·id]=>array('socket'=>[æ ‡ç¤º],'hand'=[æ˜¯å¦æ¡æ‰‹-å¸ƒå°”å€¼]), 
-[ç”¨æˆ·id]=>arr..... 
+[ÓÃ»§id]=>array('socket'=>[±êÊ¾],'hand'=[ÊÇ·ñÎÕÊÖ-²¼¶ûÖµ]), 
+[ÓÃ»§id]=>arr..... 
 ) 
 */  
    
@@ -164,7 +164,7 @@ class websocket{
     public $master;   
     public function __construct($config){  
         if (substr(php_sapi_name(), 0, 3) !== 'cli') {  
-            die("è¯·é€šè¿‡å‘½ä»¤è¡Œæ¨¡å¼è¿è¡Œ!");  
+            die("ÇëÍ¨¹ıÃüÁîĞĞÄ£Ê½ÔËĞĞ!");  
         }  
         error_reporting(E_ALL);  
         set_time_limit(0);  
@@ -179,7 +179,7 @@ class websocket{
         socket_set_option($server, SOL_SOCKET, SO_REUSEADDR, 1);  
         socket_bind($server, $address, $port);  
         socket_listen($server);  
-        $this->log('å¼€å§‹ç›‘å¬: '.$address.' : '.$port);  
+        $this->log('¿ªÊ¼¼àÌı: '.$address.' : '.$port);  
         return $server;  
     }  
   function run(){  
@@ -208,7 +208,7 @@ class websocket{
             $this->eventoutput('out',$eventreturn);  
             continue;  
           }  
-          if(!$this->users[$k]['hand']){//æ²¡æœ‰æ¡æ‰‹è¿›è¡Œæ¡æ‰‹  
+          if(!$this->users[$k]['hand']){//Ã»ÓĞÎÕÊÖ½øĞĞÎÕÊÖ  
             $this->handshake($k,$buffer);  
           }else{  
             $buffer = $this->uncode($buffer);  
@@ -219,14 +219,14 @@ class websocket{
       }  
     }  
   }  
-  function search($sign){//é€šè¿‡æ ‡ç¤ºéå†è·å–id  
+  function search($sign){//Í¨¹ı±êÊ¾±éÀú»ñÈ¡id  
     foreach ($this->users as $k=>$v){  
       if($sign==$v['socket'])  
       return $k;  
     }  
     return false;  
   }  
-  function close($sign){//é€šè¿‡æ ‡ç¤ºæ–­å¼€è¿æ¥  
+  function close($sign){//Í¨¹ı±êÊ¾¶Ï¿ªÁ¬½Ó  
     $k=array_search($sign, $this->sockets);  
     socket_close($sign);  
     unset($this->sockets[$k]);  
@@ -286,19 +286,19 @@ class websocket{
       return $msg;    
     }  
    
-    function idwrite($id,$t){//é€šè¿‡idæ¨é€ä¿¡æ¯  
-      if(!$this->users[$id]['socket']){return false;}//æ²¡æœ‰è¿™ä¸ªæ ‡ç¤º  
+    function idwrite($id,$t){//Í¨¹ıidÍÆËÍĞÅÏ¢  
+      if(!$this->users[$id]['socket']){return false;}//Ã»ÓĞÕâ¸ö±êÊ¾  
       $t=$this->code($t);  
       return socket_write($this->users[$id]['socket'],$t,strlen($t));  
     }  
-    function write($k,$t){//é€šè¿‡æ ‡ç¤ºæ¨é€ä¿¡æ¯  
+    function write($k,$t){//Í¨¹ı±êÊ¾ÍÆËÍĞÅÏ¢  
       $t=$this->code($t);  
       return socket_write($k,$t,strlen($t));  
     }  
-    function eventoutput($type,$event){//äº‹ä»¶å›è°ƒ  
+    function eventoutput($type,$event){//ÊÂ¼ş»Øµ÷  
       call_user_func($this->event,$type,$event);  
     }  
-    function log($t){//æ§åˆ¶å°è¾“å‡º  
+    function log($t){//¿ØÖÆÌ¨Êä³ö  
       if($this->log){  
         $t=$t."\r\n";  
         fwrite(STDOUT, iconv('utf-8','gbk//IGNORE',$t));  
