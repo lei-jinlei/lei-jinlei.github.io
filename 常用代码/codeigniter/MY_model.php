@@ -1,9 +1,8 @@
 <?php
-
 /**
  * Created by lei
- * Class MY_model
- * base model 
+ * Class MY_Model
+ * base model
  */
 class MY_Model extends CI_Model{
 
@@ -11,18 +10,18 @@ class MY_Model extends CI_Model{
      * 该Model对应的表名
      * @var string
      */
-    public $_table = '';
+    var $_table = '';
 
     /**
      * 该Model对应的表名
      * @var string
      */
-    public $_database = '';
+    var $_database = '';
 
     /**
      * @var string 主键
      */
-    protected $primary_key = 'id';
+    protected $primary_key = '';
 
     public function __construct(){
         parent::__construct();
@@ -44,7 +43,7 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * 返回多行数据 
+     * 返回多行数据
      * @param $sql
      * @return mixed
      */
@@ -54,7 +53,7 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * 返回单行数据 
+     * 返回单行数据
      * @param $sql
      * @return mixed
      */
@@ -64,7 +63,7 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * 返回单行首列数据 
+     * 返回单行首列数据
      * @param $sql
      * @return mixed
      */
@@ -162,19 +161,17 @@ class MY_Model extends CI_Model{
     protected function _after_update($data) {}
 
     /**
-     * where (e.g. array('field' =>'value',...)) 
+     * where (e.g. array('field' =>'value',...))
      * @param array $where
      * @return $this
      */
     function where($where=array()){
-        foreach($where as $k=>$v){
-            $this->_database->where($k, $v);
-        }
+        $this->_database->where($where);
         return $this;
     }
 
     /**
-     * limit $offset,$limit 
+     * limit $offset,$limit
      * @param int $limit
      * @param int $offset
      * @return $this
@@ -185,11 +182,21 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * order by (e.g. array('field1'=>'asc',...)) 
+     * @param string $group_by
+     * @return $this
+     */
+    public function group_by($group_by)
+    {
+        $this->_database->group_by($group_by);
+        return $this;
+    }
+
+    /**
+     * order by (e.g. array('field1'=>'asc',...))
      * @param array $orderby
      * @return $this
      */
-    function orderby($orderby=array()){
+    function order_by($orderby=array()){
         if($orderby){
             foreach($orderby as $k=>$v){
                 $this->_database->order_by($k, $v);
@@ -199,11 +206,11 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * where in (e.g. array('field1'=>array('value1','value2',...))) 
+     * where in (e.g. array('field1'=>array('value1','value2',...)))
      * @param array $wherein
      * @return $this
      */
-    function wherein($wherein=array()){
+    function where_in($wherein=array()){
         if($wherein){
             foreach($wherein as $k=>$v){
                 $this->_database->where_in($k, $v);
@@ -213,11 +220,11 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * where not in (e.g. array('field1'=>array('value1','value2',...))) 
+     * where not in (e.g. array('field1'=>array('value1','value2',...)))
      * @param array $wherenotin
      * @return $this
      */
-    function wherenotin($wherenotin=array()){
+    function where_not_in($wherenotin=array()){
         if($wherenotin){
             foreach($wherenotin as $k=>$v){
                 $this->_database->where_not_in($k, $v);
@@ -227,7 +234,7 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * 获取总数 
+     * 获取总数
      * @return mixed
      */
     function count(){
@@ -236,7 +243,7 @@ class MY_Model extends CI_Model{
     }
 
     /**
-     * select (e.g. array('field1','field2',...) or 'filed1,filed2,...') 
+     * select (e.g. array('field1','field2',...) or 'filed1,filed2,...')
      * @param string $select
      * @return mixed
      */
@@ -244,6 +251,18 @@ class MY_Model extends CI_Model{
         $this->_database->select($select);
         $query = $this->_database->get($this->_table);
         $data = $query->result_array();
+        return $data;
+    }
+
+    /**
+     * select (e.g. array('field1','field2',...) or 'filed1,filed2,...')
+     * @param string $select
+     * @return mixed
+     */
+    function get($select="*"){
+        $this->_database->select($select);
+        $query = $this->_database->get($this->_table);
+        $data = $query->row_array();
         return $data;
     }
 
@@ -262,5 +281,9 @@ class MY_Model extends CI_Model{
         return $data[0];
     }
 
+    function last_query()
+    {
+        return $this->_database->last_query();
+    }
 
 }
