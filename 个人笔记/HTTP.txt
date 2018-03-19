@@ -1,0 +1,95 @@
+HTTP的全称是什么？
+	超文本传输协议，HypeerText Transfter Protocol
+	
+常用的状态码有哪些？
+	400 Bad Request 
+		用于参数验证，少了一个参数或者参数类型错误
+	
+	502 Bad Gateway
+		后端服务挂掉，或服务压力过大
+		
+	304 Not Modified
+		该资源被浏览器缓存了不需要重新请求服务器
+		
+	401 Unauthorized
+		权限不足
+		
+	403 Forbidden
+		资源禁止访问
+		
+
+HTTP有哪些Method？
+	GET
+	POST
+	PUT
+	DELETE
+	
+	HEAD
+	OPTIONS
+	TRACE 
+	CONNECT
+
+	
+HTTP协议格式是怎样的？
+	起始行
+	消息头
+	消息体
+	
+	这三个部分以CRLF作为分隔符。最后一个消息头有两个CRLF，用来表示消息头部的结束。
+	
+
+什么是分块传送？
+	当浏览器向服务器请求一个资源时，这个资源是个动态资源，服务器无法提前预知资源的大小，这个时候就可以使用分块运输
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
