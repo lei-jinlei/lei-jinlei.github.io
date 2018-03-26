@@ -140,8 +140,25 @@ echo '<br/>';
 // 方法三
 echo date('Y-m-d H:i:s',strtotime("last day of last month"));
 
+/**
+ * 反转数组
+ * @param array $arr
+ * @return array
+ */
+function reverse($arr)
+{
+    $n = count($arr);
+    
+    $left = 0;
+    $right = $n - 1;
 
-
+    while($left < $right){
+        $temp = $arr[$left];
+        $arr[$left++] = $arr[$right];
+        $arr[$left--] = $temp;
+    }
+    return $arr;
+}
 
 
 
