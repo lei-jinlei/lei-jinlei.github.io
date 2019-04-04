@@ -2,10 +2,10 @@
 
 my blog这是我的一个个人博客，写一些技术的理解和个人感悟。
 
+* 个人
+  * [个人规划](个人笔记/个人规划.md)
 * [php](php/php.md)
   * [laravel](php/laravel.md)
-* [协议]()
-  * [Socket](协议/Socket.md)
+* 协议
   * [TCP-IP](协议/TCP-IP.md)
-* [开发流程]()
-  * [Git](开发流程/Git.md)
+  * [Socket](协议/Socket.md)
