@@ -5,6 +5,8 @@
   * [个人规划](个人笔记/个人规划.md)
 * [php](php/php.md)
   * [laravel](php/laravel.md)
+* [Linux](linux/linux.md)
+  * [supervisor](linux/supervisor.md)
 * 缓存
   * [Redis](cache/Redis.md)
 * 协议
