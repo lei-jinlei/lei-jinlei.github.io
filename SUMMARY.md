@@ -6,6 +6,7 @@
 * [php](php/php.md)
   * [laravel](php/laravel.md)
 * [Linux](linux/linux.md)
+  * [nginx](linux/nginx.md)
   * [supervisor](linux/supervisor.md)
 * 缓存
   * [Redis](cache/Redis.md)
