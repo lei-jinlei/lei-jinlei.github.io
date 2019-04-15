@@ -1,5 +1,84 @@
 # Nginx
 
+## Nginx 配置
+```
+user www-data;
+pid /run/nginx.pid;
+
+worker_processes 4;
+worker_cpu_affinity 0001 0010 0100 1000;
+worker_rlimit_nofile 65535;
+
+
+events {
+        use epoll;
+        worker_connections 65535;
+        accept_mutex off;
+        multi_accept off;
+
+}
+
+http {
+
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 60 50;
+        send_timeout 10s;
+        types_hash_max_size 2048;
+        client_header_buffer_size 4k;
+        client_max_body_size 8m;
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+
+        ##
+        # Logging Settings
+        ##
+
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+
+        ##
+        # Gzip Settings
+        ##
+
+        gzip on;
+        gzip_disable "msie6";
+        gzip_min_length 1024;
+        gzip_vary on;
+        gzip_comp_level 2;
+        gzip_buffers 32 4k;
+        gunzip_static on;
+        gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+
+        ##
+        # Virtual Host Configs
+        ##
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+}
+
+```
+
+#### worker_processes
+worker_processes 用来设置Nginx服务的进程数, 推荐是CPU内核数或内核数的倍数,推荐使用CPU内核数
+
+#### worker_cpu_affinity
+默认情况下，Nginx的多个进程有可能跑在某一个CPU或CPU的某一核上，导致Nginx进程使用硬件的资源不均，因此绑定Nginx进程到不同的CPU上是为了充分利用硬件的多CPU多核资源的目的。
+
+worker_cpu_affinity用来为每个进程分配CPU的工作内核，参数有多个二进制值表示，每一组代表一个进程，每组中的每一位代表该进程使用CPU的情况，1代表使用，0代表不使用。
+
+所以我们使用worker_cpu_affinity 0001 0010 0100 1000;来让进程分别绑定不同的核上。
+
+
+
 ## Apache 和 Nginx 的区别
 
 ### Nginx

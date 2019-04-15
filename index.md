@@ -8,6 +8,7 @@ my blog这是我的一个个人博客，写一些技术的理解和个人感悟�
 * [php](php/php.md)
   * [laravel](php/laravel.md)
 * [Linux](linux/linux.md)
+  * [操作系统](linux/system.md)
   * [nginx](linux/nginx.md)
   * [supervisor](linux/supervisor.md)
 * 数据库

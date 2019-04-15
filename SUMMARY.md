@@ -6,6 +6,7 @@
 * [php](php/php.md)
   * [laravel](php/laravel.md)
 * [Linux](linux/linux.md)
+  * [操作系统](linux/system.md)
   * [nginx](linux/nginx.md)
   * [supervisor](linux/supervisor.md)
 * 数据库
