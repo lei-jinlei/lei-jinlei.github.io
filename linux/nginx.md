@@ -77,6 +77,97 @@ worker_cpu_affinity用来为每个进程分配CPU的工作内核，参数有多�
 
 所以我们使用worker_cpu_affinity 0001 0010 0100 1000;来让进程分别绑定不同的核上。
 
+## 负载均衡
+
+负载均衡也是Nginx常用的一个功能，负载均衡其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。
+
+简单而言就是当有2台或以上服务器时，根据规则随机的将请求分发到指定的服务器上处理，负载均衡配置一般都需要同时配置反向代理，通过反向代理跳转到负载均衡。而Nginx目前支持自带3种负载均衡策略，还有2种常用的第三方策略。
+
+#### 1、RR（默认）
+
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
+
+简单配置
+
+```
+upstream test {
+    server localhost:8080;
+    server localhost:8081;
+}
+server {
+    listen       81;                                                         
+    server_name  localhost;                                               
+    client_max_body_size 1024M;
+
+    location / {
+        proxy_pass http://test;
+        proxy_set_header Host $host:$server_port;
+    }
+}
+
+```
+
+负载均衡的核心代码为
+
+```
+upstream test {
+    ip_hash
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+#### 2、权重
+
+指定轮询几率, weight和访问比例成正比,用于后端服务器性能不均的情况
+
+```
+upstream test {
+    server localhost:8080 weight=9;
+    server localhost:8081 weight=1;
+}
+
+```
+
+#### 3、ip_hash
+
+上面的2种方式都有一个问题，那就是下一个请求来的时候请求可能分发到另外一个服务器，当我们的程序不是无状态的时候（采用了session保存数据），
+这时候就有一个很大的很问题了，比如把登录信息保存到了session中，那么跳转到另外一台服务器的时候就需要重新登录了，所以很多时候我们需要一个客户只访问一个服务器，
+那么就需要用iphash了，iphash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。
+
+```
+upstream test {
+    ip_hash;
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+#### 4、fair (第三方)
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。
+
+```
+upstream test {
+    fair;
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+#### 5、url_hash (第三方)
+按照访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。
+
+在upstream中加入hash语句，server语句中不能写入weight等其他的参数，hash_method是使用的hash算法。
+
+```
+upstream test {
+    hash $request_uri; 
+    hash_method crc32; 
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
 
 
 ## Apache 和 Nginx 的区别
@@ -109,13 +200,7 @@ worker_cpu_affinity用来为每个进程分配CPU的工作内核，参数有多�
 - 两者最核心的区别在于 Apache 是同步多进程模型, 一个连接对应一个进程, 而 nginx 是异步的，多个连接（万级别）可以对应一个进程
 - 更为通用的方案是，前端 nginx 抗并发，后端 apache 集群，配合起来会更好。
 
-### nginx的负载均衡实现方式
 
-    1.轮询
-    2.用户IP哈希
-    3.指定权重
-    4.fair(第三方)
-    5.url_hash(第三方)
 
 
 

@@ -88,6 +88,14 @@ sudo
 
 sudo 允许一般用户使用 root 可执行的命令，不过只有在 /etc/sudoers 配置文件中添加的用户才能使用该指令。
 
+chown 用户:用户组 file/directory
+
+更改文件的用户及用户组
+
+chmod 777 filename
+
+文件权限管理
+
 ### 包管理工具
 
 RPM 和 DPKG 为最常见的两类软件包管理工具：
