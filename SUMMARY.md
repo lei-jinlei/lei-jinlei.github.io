@@ -13,9 +13,9 @@
   * [Supervisor](linux/supervisor.md)
 * 数据库
   * [MySQL](sql/mysql.md)
-      * [事务](sql/mysql/事务.md)
-      * [设计](sql/mysql/设计.md)
-      * [语句](sql/mysql/语句.md)
+    * [事务](sql/mysql/事务.md)
+    * [设计](sql/mysql/设计.md)
+    * [语句](sql/mysql/语句.md)
 * 缓存
   * [Redis](cache/Redis.md)
 * 协议

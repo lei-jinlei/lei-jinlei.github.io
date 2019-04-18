@@ -14,12 +14,15 @@ my blog这是我的一个个人博客，写一些技术的理解和个人感悟�
   * [Supervisor](linux/supervisor.md)
 * 数据库
   * [MySQL](sql/mysql.md)
+    * [事务](sql/mysql/事务.md)
+    * [设计](sql/mysql/设计.md)
+    * [语句](sql/mysql/语句.md)
 * 缓存
   * [Redis](cache/Redis.md)
 * 协议
-  * [TCP-IP](协议/TCP-IP.md)
-  * [Socket](协议/Socket.md)
-  * [Http](协议/Http.md)
+  * [TCP-IP](agreement/TCP-IP.md)
+  * [Socket](agreement/Socket.md)
+  * [Http](agreement/Http.md)
 * 项目
   * [高并发](project/High_Concurrence.md)
 * 工具
