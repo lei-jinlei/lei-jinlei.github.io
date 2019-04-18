@@ -4,7 +4,8 @@ lei-jinlei.github.io
 my blog这是我的一个个人博客，写一些技术的理解和个人感悟。
 
 * 个人
-  * [个人规划](个人笔记/个人规划.md)
+  * [个人规划](me/plan.md)
+  * [个人简历](me/resume.md)
 * [PHP](php/php.md)
   * [Laravel](php/laravel.md)
 * [Go](go/go.md)
