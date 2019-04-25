@@ -6,6 +6,7 @@
   * [个人简历](me/resume.md)
 * [PHP](php/php.md)
   * [Laravel](php/laravel.md)
+    * [Laravel-admin](php/laravel/Laravel-admin.md)
 * [Go](go/go.md)
 * [Linux](linux/linux.md)
   * [操作系统](linux/system.md)
