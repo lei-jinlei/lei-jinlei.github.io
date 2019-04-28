@@ -7,17 +7,21 @@
 * [PHP](php/php.md)
   * [Laravel](php/laravel.md)
     * [Laravel-admin](php/laravel/Laravel-admin.md)
+* [面对对象](object/object.md)
+  * [设计模式](object/设计模式.md)
 * [操作系统](system/basic.md)
   * [进程](system/process.md)
+  * [死锁](system/死锁.md)
 * [Go](go/go.md)
 * [Linux](linux/linux.md)
   * [Nginx](linux/nginx.md)
   * [Supervisor](linux/supervisor.md)
 * 数据库
   * [MySQL](sql/mysql.md)
-    * [事务](sql/mysql/事务.md)
     * [设计](sql/mysql/设计.md)
+    * [索引](sql/mysql/索引.md)
     * [语句](sql/mysql/语句.md)
+    * [事务](sql/mysql/事务.md)
 * 缓存
   * [Redis](cache/Redis.md)
 * 协议
