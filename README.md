@@ -19,9 +19,10 @@ my blog这是我的一个个人博客，写一些技术的理解和个人感悟�
   * [Supervisor](linux/supervisor.md)
 * 数据库
   * [MySQL](sql/mysql.md)
-    * [事务](sql/mysql/事务.md)
     * [设计](sql/mysql/设计.md)
+    * [索引](sql/mysql/索引.md)
     * [语句](sql/mysql/语句.md)
+    * [事务](sql/mysql/事务.md)
 * 缓存
   * [Redis](cache/Redis.md)
 * 协议
