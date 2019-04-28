@@ -9,9 +9,10 @@ my blog这是我的一个个人博客，写一些技术的理解和个人感悟�
 * [PHP](php/php.md)
   * [Laravel](php/laravel.md)
     * [Laravel-admin](php/laravel/Laravel-admin.md)
+* [操作系统](system/basic.md)
+  * [进程](system/process.md)
 * [Go](go/go.md)
 * [Linux](linux/linux.md)
-  * [操作系统](linux/system.md)
   * [Nginx](linux/nginx.md)
   * [Supervisor](linux/supervisor.md)
 * 数据库
