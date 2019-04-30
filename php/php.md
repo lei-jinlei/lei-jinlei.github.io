@@ -76,13 +76,69 @@ PHP是一门弱类型语言，不严格区分变量的类型。PHP的变量可�
 
 ## 语法规则
 
-mysql与mysqli的主要区别
+#### mysql与mysqli的主要区别
 
 1. 首先两个函数都是用来处理DB 的。
 2. mysqli 连接是永久连接，而mysql是非永久连接。什么意思呢？ mysql连接每当第二次使用的时候，都会重新打开一个新的进程，而mysqli则只使用同一个进程，这样可以很大程度的减轻服务器端压力。
 3. mysqli封装了诸如事务等一些高级操作，同时封装了DB操作过程中的很多可用的方法。应用比较多的地方是 mysqli的事务。
 
 
+#### PHP多进程编程
+php要使用多进程需要安装pcntl扩展，扩展安装方法百度即可。使用pcntl_fork来fork出多个进程来并行执行代码。
+
+pcntl_fork
+
+pcntl_fork — 在当前进程当前位置产生分支（子进程）。译注：fork是创建了一个子进程，父进程和子进程 都从fork的位置开始向下继续执行，不同的是父进程执行过程中，得到的fork返回值为子进程 号，而子进程得到的是0。
+
+```
+<?php
+
+if (!function_exists('pcntl_fork')) {
+    die("pcntl extention is must !");
+}
+
+$pid = pcntl_fork();
+if ($pid == -1) {
+    die("创建子进程失败!");
+} elseif ($pid) { 
+    // > 0
+    // 父进程逻辑
+    pcntl_wait($status); // 等待子进程结束，为了防止子进程变成僵尸进程
+} else {
+    // 0
+    // 子进程逻辑
+}
+
+```
+
+多进程可以用来进行大文件的处理，如一个文件有几亿行数据，则可以将文件拆分成多个小文件进程处理。(百度好看视频面试题)
+
+假如文件有10万行，则可以拆分成4个文件，每个文件2.5万行，可以使用split。
+
+```
+<?php 
+
+shell_exec('split -l 25000 -d access.log prefix_name') // 3个子进程处理 
+
+for ($i = 0; $i < 3; $i++) { 
+    $pid = pcntl_fork(); 
+    if ($pid == -1) { 
+        die("创建子进程失败!"); 
+    } elseif ($pid) { 
+        // 父进程 
+    } else { 
+        $content = file_get_contents("prefix_name0" . $i); 
+        // 处理逻辑 
+        exit; 
+    } 
+} 
+
+while (pcntl_waitpid(0, $status) != -1) {
+    $status = pcntl_wexitstatus($status); 
+    // 回收子进程 echo "回收进程" . $status; 
+}
+
+```
 
 
 PHP 的生命周期
