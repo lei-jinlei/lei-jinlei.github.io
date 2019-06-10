@@ -1,10 +1,5 @@
-# 单向链表
-
-概括：单链表有一个引用指向后续节点
-
-```
 <?php
-    
+
 class Node
 {
     public $data = null;
@@ -21,11 +16,11 @@ class singleLinkList
     private $header = null;
     private $last = null;
     public $size = 0;
-    
+
     public function __construct()
     {
     }
-    
+
     public function add($data)
     {
         $node = new Node($data);
@@ -37,7 +32,7 @@ class singleLinkList
             $this->last = $node;
         }
     }
-    
+
     public function del($data)
     {
         $node = $this->header;
@@ -52,7 +47,7 @@ class singleLinkList
         }
         return false;
     }
-    
+
     public function update($old, $new)
     {
         $node = $this->header;
@@ -66,7 +61,7 @@ class singleLinkList
         echo 'not found!';
         return false;
     }
-    
+
     public function find($data)
     {
         $node = $this->header;
@@ -84,7 +79,7 @@ class singleLinkList
         echo 'not found';
         return false;
     }
-    
+
     public function getAll()
     {
         $node = $this->header;
@@ -119,5 +114,3 @@ echo "<pre>";
 
 $list->find(7);
 // $list->getAll();
-
-```
