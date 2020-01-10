@@ -141,6 +141,39 @@ while (pcntl_waitpid(0, $status) != -1) {
 ```
 
 
+## PHP 运行模式？如何运行？
+- Nignx+php `fast cgi`
+- 命令行模式 `cli`
+- Apache+php `web模式`
+- Iss+php `ISAPI模式`
+- 老版本的 `nginx+php cgi`
+
+#### Fastcgi运行机制
+
+    cgi 的升级版，多进程，说明 cgi 每次运行都需要加载 php.ini 等配置文件，所以速度慢，而 fastcgi 父进程加载一次，子进程不需要加载，所以速度快。
+
+#### Web模块运行机制
+
+    是以 php 的扩展形式安装在 apache 下当需要解析 php 代码时，则直接调用 php 扩展功能。
+
+#### cLi命令行模式
+
+    就是直接运行在命令行，linux 和 windos 都支持
+
+#### ISAPI模式
+
+    是 IIS 微软操作系统自带的 web 服务器把 php 源码发给 php 进行解析
+
+
+
+## 简述 php 的垃圾回收机制是如何实现的？
+
+- 简称 gc, PHP使用了引用计数机制来回收
+- 每个对象都内含一个引用计数器,每个reference链接到对象, 计数器加1, 当reference 离开对象被设为null,
+    计数器减1,当某个引用计数器的对象为0时,PHP知道你将不再需要使用这个对象,释放其所占有的内存空间
+- 简单来说就是: 在PHP中, 没有任何变量指向一个对象的时候, 这个对象就成为垃圾
+    
+
 PHP 的生命周期
 
 
