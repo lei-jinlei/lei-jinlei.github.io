@@ -17,6 +17,8 @@
   * [进程](system/process.md)
   * [死锁](system/死锁.md)
 * [Go](go/go.md)
+* [Python](python/python.md)
+  * [Requests](python/requests.md)
 * [Linux](linux/linux.md)
   * [Nginx](linux/nginx.md)
   * [Supervisor](linux/supervisor.md)
