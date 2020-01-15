@@ -19,6 +19,8 @@
 * [Go](go/go.md)
 * [Python](python/python.md)
   * [Requests](python/requests.md)
+    * [请求](python/requests/请求.md)
+    * [响应](python/requests/响应.md)
 * [Linux](linux/linux.md)
   * [Nginx](linux/nginx.md)
   * [Supervisor](linux/supervisor.md)
