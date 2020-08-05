@@ -57,3 +57,33 @@ redis目前官方只支持LINUX 上去行，从而省去了对于其它系统的
 3. 更新Redis数据：MySQ的数据操作binlog，来更新到Redis
 
 > 消息推送工具你也可以采用别的第三方：kafka、rabbitMQ等来实现推送更新Redis!
+
+### 缓存过期策略
+
+- noeviction：当内存使用达到阈值的时候，所有引起申请内存的命令会报错。
+
+- allkeys-lru：在主键空间中，优先移除最近未使用的key。
+
+- volatile-lru：在设置了过期时间的键空间中，优先移除最近未使用的key。
+
+- allkeys-random：在主键空间中，随机移除某个key。
+
+- volatile-random：在设置了过期时间的键空间中，随机移除某个key。
+
+- volatile-ttl：在设置了过期时间的键空间中，具有更早过期时间的key优先移除。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
