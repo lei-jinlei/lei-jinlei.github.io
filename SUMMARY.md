@@ -28,6 +28,8 @@
   * [Supervisor](linux/supervisor.md)
 * 数据库
   * [MySQL](sql/mysql.md)
+    * [存储引擎](sql/mysql/存储引擎.md)
+    * [架构](sql/mysql/架构.md)
     * [设计](sql/mysql/设计.md)
     * [索引](sql/mysql/索引.md)
     * [语句](sql/mysql/语句.md)

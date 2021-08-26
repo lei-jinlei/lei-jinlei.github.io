@@ -19,11 +19,11 @@ Blog：https://lei-jinlei.github.io/
 
 ## 个人概况
 
-后端工程师，3 年 PHP 开发经验
+后端工程师，5 年 PHP 开发经验
 
 ## 个人技能
 
-框架：熟练使用 CI、TP3.2、TP5.0、Laravel、Phalcon 框架
+框架：熟练使用 CI、TP、Laravel、Phalcon、Yii、Tars 框架
 
 PHP : 熟练运用PHP语法，熟练运用PHP面向对象，可以根据业务逻辑结合合适的设计模式。
 
